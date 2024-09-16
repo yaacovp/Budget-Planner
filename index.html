@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Budget Planner</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Budget Planner</h1>
+        </header>
+
+        <main>
+            <section class="form-section">
+                <h2>Ajouter une transaction</h2>
+                <form id="budget-form">
+                    <div class="form-group">
+                        <label for="type">Type :</label>
+                        <select id="type">
+                            <option value="income">Revenu</option>
+                            <option value="expense">Dépense</option>
+                        </select>
+                    </div>
+                
+                    <div class="form-group">
+                        <label for="category">Catégorie :</label>
+                        <select id="category">
+                            <option value="salaire">Salaire</option>
+                            <option value="alimentation">Alimentation</option>
+                            <option value="loisirs">Loisirs</option>
+                            <option value="transport">Transport</option>
+                        </select>
+                    </div>
+                
+                    <div class="form-group">
+                        <label for="amount">Montant :</label>
+                        <input type="number" id="amount" placeholder="Montant" required>
+                    </div>
+                
+                    <button type="submit">Ajouter</button>
+                </form>
+                
+            </section>
+
+            <section class="filter-section">
+                <h2>Filtrer les transactions</h2>
+                <label for="filter-type">Type de filtre :</label>
+                <select id="filter-type">
+                    <option value="day">Par jour</option>
+                    <option value="month">Par mois</option>
+                    <option value="year">Par année</option>
+                </select>
+
+                <div id="filter-inputs">
+                    <!-- Inputs dynamiques pour les filtres -->
+                    <input type="date" id="filter-day" class="filter-input" style="display: none;">
+                    <input type="month" id="filter-month" class="filter-input" style="display: none;">
+                    <input type="number" id="filter-year" class="filter-input" min="2000" max="2100" style="display: none;" placeholder="Année">
+                </div>
+
+                <button id="apply-filter">Appliquer le filtre</button>
+            </section>
+
+            <section class="summary-section">
+                <h2>Résumé</h2>
+                <div class="summary">
+                    <p><strong>Total des revenus :</strong> <span id="total-income">0</span>€</p>
+                    <p><strong>Total des dépenses :</strong> <span id="total-expenses">0</span>€</p>
+                    <p><strong>Solde :</strong> <span id="balance">0</span>€</p>
+                </div>
+            </section>
+
+            <section class="charts-section">
+                <canvas id="expenseChart" width="400" height="400"></canvas>
+                <canvas id="balanceChart" width="400" height="400"></canvas>
+            </section>
+
+            <section class="transactions-section">
+                <h2>Transactions</h2>
+                <ul id="transaction-list"></ul>
+            </section>
+
+            <section class="backup-section">
+                <h2>Sauvegarde</h2>
+                <button id="export-json">Exporter en JSON</button>
+                <input type="file" id="import-json" accept=".json">
+            </section>
+        </main>
+
+        <script src="script.js"></script>
+    </div>
+</body>
+</html>
